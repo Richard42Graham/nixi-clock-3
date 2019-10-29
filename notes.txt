@@ -1,0 +1,19 @@
+
+ -- MCP23017 -- ( 0x20 )
+http://www.farnell.com/datasheets/12179.pdf
+
+A0 = over volte detection
+A1 = mute
+A2 = SHDN
+A3 = relay
+A4 = HV enable
+A5 = over current detection
+A6 = OE (global output enable)
+
+
+ -- PCA9685 -- ( 40, 50, 60, 70, 48, 68 ) 
+https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
+
+ -- ATiny85 -- ( 69, 45, 42, 2a, 62, b4 )
+nixi-clock-neon.ino
+
