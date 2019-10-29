@@ -17,3 +17,6 @@ https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
  -- ATiny85 -- ( 69, 45, 42, 2a, 62, b4 )
 nixi-clock-neon.ino
 
+ -- ADC121C021 -- (5a, 55)
+http://www.ti.com/lit/ds/symlink/adc121c021.pdf
+
