@@ -13,6 +13,8 @@ A6 = OE (global output enable)
 
  -- PCA9685 -- ( 40, 50, 60, 70, 48, 68 ) 
 https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
+basicaly every 4th register is the brightness value.
+
 
  -- ATiny85 -- ( 69, 45, 42, 2a, 62, b4 )
 nixi-clock-neon.ino
