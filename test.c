@@ -4,37 +4,43 @@
 #include <string.h>
 #include <math.h>
 #include <sys/types.h>
-#include "api.h"
-#define BUS "/dev/i2c-1"
+#include "i2c_api.h"
+#include "tube_api.h"
+
+
+#define BUS "/dev/i2c-0"
 
 int main()
 {
     //Opens bus
     int fd;
-    if ((fd = open_i2c_bus(BUS)) < 0)
+    if ((fd = open_bus(BUS)) < 0)
     {
-        printf("Couldn't open bus! %d\n", fd);
+        printf("Failed to open bus! %d\n", fd);
         return 1;
     }
-    int i, tube, digi = 0;
+	if (init_tubes(fd) != 0)
+	{
+		printf("Failed to init the tubes! %d\n", fd);
+		return 1;
+	}
+    int brightness, tube, digit = 0;
     for (tube = 0; tube < 7; tube++)
     {
-        for (digi = 0; digi < 12; digi++)
+        for (digit = 0; digit < 12; digit++)
         {
-            digit d = tubes[tube][digi];
-            for (i = 1; i <= 0x09; i++)
+            for (brightness = 1; brightness <= 0x09; brightness++)
             {
-                set_digit(fd, d, i);
+				set_tube(fd, tube, digit, brightness);
                 usleep(33000);
             }
-            for (i = 0x08; i >= 0; i--)
+            for (brightness = 0x08; brightness >= 0; brightness--)
             {
-                set_digit(fd, d, i);
+				set_tube(fd, tube, digit, brightness);
                 usleep(33000);
             }
         }
     }
-    printf("hello... \n");
-    close_i2c_bus(fd);
+    close_bus(fd);
     return 0;
 }

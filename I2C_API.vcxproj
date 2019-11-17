@@ -35,11 +35,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="api.c" />
+    <ClCompile Include="i2c_api.c" />
     <ClCompile Include="test.c" />
+    <ClCompile Include="tube_api.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="api.h" />
+    <ClInclude Include="i2c_api.h" />
+    <ClInclude Include="tube_api.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ea8b3e0c-3b53-4d4b-9d7a-23964fffc7b0}</ProjectGuid>
