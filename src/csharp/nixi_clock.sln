@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c_api", "c\nixi_clock.vcxproj", "{EA8B3E0C-3B53-4D4B-9D7A-23964FFFC7B0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c_api", "..\c\nixi_clock.vcxproj", "{EA8B3E0C-3B53-4D4B-9D7A-23964FFFC7B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nixi-clock", "csharp\nixi-clock\nixi-clock.csproj", "{476B81C9-D54D-45EB-AD99-A1A859A3ABE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nixi-clock", "nixi-clock\nixi-clock.csproj", "{476B81C9-D54D-45EB-AD99-A1A859A3ABE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
