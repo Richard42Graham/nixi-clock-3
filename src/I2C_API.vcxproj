@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="i2c_api.c" />
-    <ClCompile Include="test.c" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="tube_api.c" />
   </ItemGroup>
   <ItemGroup>
