@@ -1,3 +1,7 @@
+#pragma once
+#ifndef API_H_INCLUDED
+#define API_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -14,13 +18,14 @@
 #ifndef I2C_M_RD
 #include <linux/i2c.h>
 #endif
+
 typedef struct digit digit;
 struct digit
 {
     char chip;
     char adress;
 };
-char chips[] = {0x40,0x41,0x42,0x43,0x44,0x45};
+static const char chips[] = { 0x40,0x41,0x42,0x43,0x44,0x45 };
 //			       0             1           2	       3	      4		    5	         6	     7		  8	       9	  .L		.R
 static digit tubes[7][12] = {
     {{0x40, 0x0d}, {0x40, 0x15}, {0x40, 0x19}, {0x40, 0x1d}, {0x40, 0x21}, {0x40, 0x25}, {0x40, 0x29}, {0x40, 0x2d}, {0x40, 0x31}, {0x40, 0x35}, {0x40, 0x11}, {0x40, 0x09}}, // H _:_ _ : _ _ : _
@@ -32,10 +37,11 @@ static digit tubes[7][12] = {
     {{0x45, 0x3d}, {0x45, 0x35}, {0x45, 0x0d}, {0x45, 0x21}, {0x45, 0x19}, {0x45, 0x15}, {0x45, 0x11}, {0x45, 0x39}, {0x45, 0x45}, {0x45, 0x41}, {0x45, 0x1d}, {0x45, 0x09}}  // _ _ : _ _ : _ _ : D
 };
 
-int open(int fd);
+int open_i2c_bus(char bus[]);
 int init(int fd);
-int close(int fd);
+int close_i2c_bus(int fd);
 
 int read_reg(int fd, u_int8_t device_address, u_int8_t reg, char *output);
 int write_reg(int fd, u_int8_t device_address, u_int8_t reg, char input);
 int set_digit(int fd,digit digi,char value);
+#endif

@@ -4,14 +4,14 @@
 #include <string.h>
 #include <math.h>
 #include <sys/types.h>
-#include "api.c"
+#include "api.h"
 #define BUS "/dev/i2c-1"
 
 int main()
 {
     //Opens bus
     int fd;
-    if ((fd = open(BUS)) < 0)
+    if ((fd = open_i2c_bus(BUS)) < 0)
     {
         printf("Couldn't open bus! %d\n", fd);
         return 1;
@@ -34,7 +34,7 @@ int main()
             }
         }
     }
-    printf("\n");
-    close(fd);
+    printf("hello... \n");
+    close_i2c_bus(fd);
     return 0;
 }
