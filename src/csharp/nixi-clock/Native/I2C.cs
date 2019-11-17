@@ -6,7 +6,7 @@ namespace nixi_clock.Native
     {
 
         [DllImport("a.out")]
-        public static extern int open_bus(char[] bus);
+        public static extern int open_bus(byte[] bus);
 
         [DllImport("a.out")]
         public static extern int read_register(int fd, byte device_address, byte reg, out byte output);

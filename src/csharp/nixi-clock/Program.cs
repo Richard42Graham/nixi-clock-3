@@ -1,5 +1,6 @@
 ﻿using nixi_clock.Native;
 using System;
+using System.Text;
 using System.Threading;
 
 namespace nixi_clock
@@ -11,7 +12,7 @@ namespace nixi_clock
         {
             //Opens bus
             int fd;
-            if ((fd = I2C.open_bus(BUS.ToCharArray())) < 0)
+            if ((fd = I2C.open_bus(Encoding.UTF8.GetBytes(BUS))) < 0)
             {
                 Console.WriteLine("Failed to open bus! %d\n", fd);
                 return;
