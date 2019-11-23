@@ -22,6 +22,15 @@ namespace nixi_clock
                 Console.WriteLine("Failed to init the tubes! %d\n", fd);
                 return;
             }
+
+            TubesController tubesController = new TubesController(fd);
+            tubesController.Run();
+
+            I2C.close_bus(fd);
+        }
+
+        private static void TestTubes(int fd)
+        {
             int brightness, tube, digit = 0;
             for (tube = 0; tube < 7; tube++)
             {
@@ -39,7 +48,6 @@ namespace nixi_clock
                     }
                 }
             }
-            I2C.close_bus(fd);
         }
     }
 }
