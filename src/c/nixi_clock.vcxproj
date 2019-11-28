@@ -37,11 +37,13 @@
   <ItemGroup>
     <ClCompile Include="i2c_api.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="steinsGate.c" />
     <ClCompile Include="tube_api.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="export.h" />
     <ClInclude Include="i2c_api.h" />
+    <ClInclude Include="steinsGate.h" />
     <ClInclude Include="tube_api.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
