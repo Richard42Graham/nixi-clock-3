@@ -19,7 +19,7 @@ namespace nixi_clock
         public int FramesPerSecond = 144;
 
         private Thread tubeThread = null;
-        private States State = States.Stopped;
+        private States State = States.Running;
         private readonly object lockObject = new object();
         private readonly int fd;
 
@@ -63,8 +63,8 @@ namespace nixi_clock
             while (State == States.Running)
             {
                 var board = current.GetBoard();
-                currentBoard.Interpolate(board, 0.1f);
-                UpdateBoard(currentBoard);
+                //currentBoard.Interpolate(board, 0.1f);
+                UpdateBoard(board);
                 Thread.Sleep(1000 / FramesPerSecond);
             }
         }

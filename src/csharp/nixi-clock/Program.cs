@@ -23,9 +23,10 @@ namespace nixi_clock
                 return;
             }
 
-            TubesController tubesController = new TubesController(fd);
-            tubesController.Run();
-
+//            TubesController tubesController = new TubesController(fd);
+//            tubesController.Run();
+//            TestTubes(fd);
+            Tubes.set_tube(fd, 0, 5, (byte)255);
             I2C.close_bus(fd);
         }
 

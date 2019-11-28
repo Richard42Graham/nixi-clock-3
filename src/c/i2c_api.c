@@ -3,7 +3,7 @@
 
 #include <fcntl.h> // open bus file
 #include <linux/i2c-dev.h>
-// #include <linux/i2c.h>
+ #include <linux/i2c.h>
 #include <sys/types.h>
 
 int open_bus(char bus[]) {

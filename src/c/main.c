@@ -7,7 +7,7 @@
 #include "i2c_api.h"
 #include "tube_api.h"
 
-#define BUS "/dev/i2c-1"
+#define BUS "/dev/i2c-0"
 
 int main()
 {
