@@ -6,19 +6,20 @@ namespace nixi_clock.Model
 {
     public class Tube
     {
-        public byte[] Digits { get; } = new byte[]
+        public Digit[] Digits { get; } = new Digit[]
         {
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit(),
+            new Digit()
         };
     }
 }

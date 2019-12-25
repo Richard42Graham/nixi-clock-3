@@ -1,8 +1,4 @@
 ﻿using nixi_clock.Model;
-using nixi_clock.Native;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace nixi_clock
@@ -75,7 +71,7 @@ namespace nixi_clock
             {
                 for (int j = 0; j < board.Tubes[i].Digits.Length; j++)
                 {
-                    Tubes.set_tube(fd, i, j, board.Tubes[i].Digits[j]);
+                    //Tubes.set_tube(fd, i, j, board.Tubes[i].Digits[j]);
                 }
             }
         }

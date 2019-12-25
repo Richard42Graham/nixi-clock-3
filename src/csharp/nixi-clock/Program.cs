@@ -1,5 +1,4 @@
-﻿using nixi_clock.Native;
-using System;
+﻿using System;
 using System.Text;
 using System.Threading;
 
@@ -10,24 +9,24 @@ namespace nixi_clock
         const string BUS = "/dev/i2c-0";
         static void Main(string[] args)
         {
-            //Opens bus
-            int fd;
-            if ((fd = I2C.open_bus(Encoding.UTF8.GetBytes(BUS))) < 0)
-            {
-                Console.WriteLine("Failed to open bus! %d\n", fd);
-                return;
-            }
-            if (Tubes.init_tubes(fd) != 0)
-            {
-                Console.WriteLine("Failed to init the tubes! %d\n", fd);
-                return;
-            }
+            ////Opens bus
+            //int fd;
+            //if ((fd = I2C.open_bus(Encoding.UTF8.GetBytes(BUS))) < 0)
+            //{
+            //    Console.WriteLine("Failed to open bus! %d\n", fd);
+            //    return;
+            //}
+            //if (Tubes.init_tubes(fd) != 0)
+            //{
+            //    Console.WriteLine("Failed to init the tubes! %d\n", fd);
+            //    return;
+            //}
 
 //            TubesController tubesController = new TubesController(fd);
 //            tubesController.Run();
 //            TestTubes(fd);
-            Tubes.set_tube(fd, 0, 5, (byte)255);
-            I2C.close_bus(fd);
+            //Tubes.set_tube(fd, 0, 5, (byte)255);
+            //I2C.close_bus(fd);
         }
 
         private static void TestTubes(int fd)
@@ -39,12 +38,12 @@ namespace nixi_clock
                 {
                     for (brightness = 1; brightness <= 0x09; brightness++)
                     {
-                        Tubes.set_tube(fd, tube, digit, (byte)brightness);
+                        //Tubes.set_tube(fd, tube, digit, (byte)brightness);
                         Thread.Sleep(33);
                     }
                     for (brightness = 0x08; brightness >= 0; brightness--)
                     {
-                        Tubes.set_tube(fd, tube, digit, (byte)brightness);
+                        //Tubes.set_tube(fd, tube, digit, (byte)brightness);
                         Thread.Sleep(33);
                     }
                 }

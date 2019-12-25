@@ -10,17 +10,29 @@ namespace nixi_clock
             {
                 for (int j = 0; j < from.Tubes[i].Digits.Length && i < to.Tubes[i].Digits.Length; j++)
                 {
-                    from.Tubes[i].Digits[j] = LinearInterpolation(
-                        from.Tubes[i].Digits[j],
-                        to.Tubes[i].Digits[j], 
-                        time);
+                    from.Tubes[i].Digits[j].FullOn = to.Tubes[i].Digits[j].FullOn;
+                    from.Tubes[i].Digits[j].FullOff = to.Tubes[i].Digits[j].FullOff;
+                    if (from.Tubes[i].Digits[j].On != to.Tubes[i].Digits[j].On)
+                    {
+                        from.Tubes[i].Digits[j].On = LinearInterpolation(
+                            from.Tubes[i].Digits[j].On,
+                            to.Tubes[i].Digits[j].On,
+                            time);
+                    }
+                    if (from.Tubes[i].Digits[j].Off != to.Tubes[i].Digits[j].Off)
+                    {
+                        from.Tubes[i].Digits[j].Off = LinearInterpolation(
+                            from.Tubes[i].Digits[j].Off,
+                            to.Tubes[i].Digits[j].Off,
+                            time);
+                    }
                 }
             }
         }
 
-        private static byte LinearInterpolation(byte from, byte to, float time)
+        private static short LinearInterpolation(short from, short to, float time)
         {
-            return (byte)(from + (to - from) * time);
+            return (short)(from + (to - from) * time);
         }
     }
 }
