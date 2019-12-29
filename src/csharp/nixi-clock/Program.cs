@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Iot.Device.Pwm;
+using nixi_clock.Model;
+using System;
+using System.Device.I2c;
 using System.Text;
 using System.Threading;
 
@@ -9,6 +12,19 @@ namespace nixi_clock
         const string BUS = "/dev/i2c-0";
         static void Main(string[] args)
         {
+
+            //I2cDevice device = I2cDevice.Create(new I2cConnectionSettings(0, Pca9685.I2cAddressBase));
+            //Pca9685 board = new Pca9685(device);
+            BoardRenderer renderer = new BoardRenderer();
+            renderer.RenderToConsole = true;
+            Clock clock = new Clock();
+            while(true)
+            {
+                Board board = clock.GetBoard();
+                renderer.Render(board);
+                Thread.Sleep(100);
+            }
+
             ////Opens bus
             //int fd;
             //if ((fd = I2C.open_bus(Encoding.UTF8.GetBytes(BUS))) < 0)
@@ -22,9 +38,9 @@ namespace nixi_clock
             //    return;
             //}
 
-//            TubesController tubesController = new TubesController(fd);
-//            tubesController.Run();
-//            TestTubes(fd);
+            //            TubesController tubesController = new TubesController(fd);
+            //            tubesController.Run();
+            //            TestTubes(fd);
             //Tubes.set_tube(fd, 0, 5, (byte)255);
             //I2C.close_bus(fd);
         }
