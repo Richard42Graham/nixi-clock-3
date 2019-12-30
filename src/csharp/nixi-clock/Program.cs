@@ -15,19 +15,19 @@ namespace nixi_clock
         const string BUS = "/dev/i2c-0";
         static void Main(string[] args)
         {
-            //TestMap();
-            //Console.WriteLine("Done");
-            BoardRenderer renderer = new BoardRenderer();
-            renderer.Brightness = 0.1;
-            Clock clock = new Clock();
-            Board currentState = new Board();
-            while (true)
-            {
-                Board board = clock.GetBoard();
-                currentState.Interpolate(board, 0.5f);
-                renderer.Render(currentState);
-                Thread.Sleep(5);
-            }
+            TestMap();
+            Console.WriteLine("Done");
+            //BoardRenderer renderer = new BoardRenderer();
+            //renderer.Brightness = 0.1;
+            //Clock clock = new Clock();
+            //Board currentState = new Board();
+            //while (true)
+            //{
+            //    Board board = clock.GetBoard();
+            //    currentState.Interpolate(board, 0.5f);
+            //    renderer.Render(currentState);
+            //    Thread.Sleep(5);
+            //}
         }
 
         private static void TestMap()
