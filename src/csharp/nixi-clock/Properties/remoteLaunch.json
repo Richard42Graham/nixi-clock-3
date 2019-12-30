@@ -1,0 +1,14 @@
+{
+  "adapterArgs": "-i c:\\users\\mrjav\\.ssh\\ssh-key.ppk richard@192.168.1.7 -batch -T ~/vsdbg/vsdbg --interpreter=vscode",
+  "adapter": "C:\\Program Files\\PuTTY\\plink.exe",
+  "configurations": [
+    {
+      "name": ".NET Core Launch",
+      "type": "coreclr",
+      "cwd": "~/nixi-clock-debug",
+      "program": "nixi-clock.dll",
+      "request": "launch"
+    }
+  ],
+  "version": "0.2.0"
+}
