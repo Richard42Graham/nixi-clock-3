@@ -18,15 +18,15 @@ namespace nixi_clock
             //TestMap();
             //Console.WriteLine("Done");
             BoardRenderer renderer = new BoardRenderer();
-            //renderer.RenderToConsole = true;
+            renderer.Brightness = 0.1;
             Clock clock = new Clock();
             Board currentState = new Board();
             while (true)
             {
                 Board board = clock.GetBoard();
-                currentState.Interpolate(board, 0.15f);
+                currentState.Interpolate(board, 0.5f);
                 renderer.Render(currentState);
-                Thread.Sleep(10);
+                Thread.Sleep(5);
             }
         }
 

@@ -9,16 +9,17 @@ namespace nixi_clock
 {
     public class BoardRenderer
     {
+        public double Brightness = 0.5f;
         public bool ToConsole { get; set; } = false;
         private readonly Pca9685[] devices;
         private readonly Dictionary<(int, int), (Pca9685, int)> devicesMap = new Dictionary<(int, int), (Pca9685, int)>();
 
         private Board currentState = new Board();
-        public BoardRenderer(int busId = 0)
+        public BoardRenderer(int busId = 0, double pwmFrequency = 250)
         {
             devices = new Pca9685[6];
             for (int i = 0; i < devices.Length; i++)
-                devices[i] = new Pca9685(I2cDevice.Create(new I2cConnectionSettings(busId, Pca9685.I2cAddressBase + i)), 150);
+                devices[i] = new Pca9685(I2cDevice.Create(new I2cConnectionSettings(busId, Pca9685.I2cAddressBase + i)), pwmFrequency);
             Array.ForEach(devices, d => d.SetDutyCycleAllChannels(0));
 
             // Does not map to anything:
@@ -141,7 +142,7 @@ namespace nixi_clock
                     {
                         currentState.Tubes[i].Digits[j].DutyCycle = digit.DutyCycle;
                         (Pca9685 device, int channel) = devicesMap[(i, j)];
-                        device.SetDutyCycle(channel, digit.DutyCycle);
+                        device.SetDutyCycle(channel, digit.DutyCycle * Brightness);
                     }
                 }
             }
