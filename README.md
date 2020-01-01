@@ -30,3 +30,20 @@ nixi-clock-neon.ino
 
  ### ADC121C021 (5a, 55)
 http://www.ti.com/lit/ds/symlink/adc121c021.pdf
+
+
+## NanoPi NEO Air
+
+The Nixi Clock can be controlled by a  NanoPi NEO Air
+
+![Pinout](NanoPi-NEO-AIR_pinout-02.jpg "Pinout")
+
+### Rotary Encoder
+
+JWolf is using a Rotary Encoder which is connected to the NanoPi powered by 3.3v. 
+
+| Device | Pin |
+| :-------------: | :-------------: |
+| Knob | PC0, PC1 |
+| Button | PG9 | 
+
