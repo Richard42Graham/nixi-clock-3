@@ -15,7 +15,7 @@ namespace nixi_clock
         private readonly Dictionary<(int, int), (Pca9685, int)> devicesMap = new Dictionary<(int, int), (Pca9685, int)>();
 
         private Board currentState = new Board();
-        public BoardRenderer(int busId = 0, double pwmFrequency = 250)
+        public BoardRenderer(int busId = 0, double pwmFrequency = 4000)
         {
             devices = new Pca9685[6];
             for (int i = 0; i < devices.Length; i++)

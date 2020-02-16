@@ -2,33 +2,64 @@
 using nixi_clock.Model;
 using System;
 using System.Device.I2c;
-using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 
 namespace nixi_clock
 {
     class Program
     {
+
+
         //Package Mangager Console: & "C:\Program Files\PuTTY\pscp.exe" -r -i C:\users\mrjav\.ssh\ssh-key.ppk C:\Users\mrjav\Documents\nixi-clock-3\src\csharp\nixi-clock\bin\Debug\netcoreapp3.0\* richard@192.168.1.7:/home/richard/nixi-clock-debug
         //Visual Studio Command Window: DebugAdapterHost.Launch /LaunchJson:C:\Users\mrjav\Documents\nixi-clock-3\src\csharp\nixi-clock\Properties/remoteLaunch.json /EngineGuid:541B8A8A-6081-4506-9F0A-1CE771DEBC04
 
-        const string BUS = "/dev/i2c-0";
+        private static Clock clock = new Clock();
+        private static Countdown countdown = new Countdown();
+        private static IBoardState boardState;
+
         static void Main(string[] args)
         {
-            TestMap();
-            Console.WriteLine("Done");
-            //BoardRenderer renderer = new BoardRenderer();
+            var buffer = new BufferBlock<UserInputEvent>();
+            GpioInputHandler gpio2Listener = new GpioInputHandler(buffer);
+            Task.Run(async () => await UserInputHandler(buffer));
+            //TestMap();
+            
+            BoardRenderer renderer = new BoardRenderer();
             //renderer.Brightness = 0.1;
-            //Clock clock = new Clock();
-            //Board currentState = new Board();
-            //while (true)
-            //{
-            //    Board board = clock.GetBoard();
-            //    currentState.Interpolate(board, 0.5f);
-            //    renderer.Render(currentState);
-            //    Thread.Sleep(5);
-            //}
+            renderer.Brightness = 0.3;
+            boardState = clock;
+            while (true)
+            {
+                Board board = boardState.GetBoard();
+                renderer.Render(board);
+                Thread.Sleep(5);
+            }
         }
+
+        static async Task UserInputHandler(ISourceBlock<UserInputEvent> source)
+        {
+            // Read from the source buffer until the source buffer has no 
+            // available output data.
+            while (await source.OutputAvailableAsync())
+            {
+                var input = source.Receive();
+                if (input == UserInputEvent.ButtonPress)
+                {
+                    if (boardState == clock)
+                        boardState = countdown;
+                    else
+                        boardState = clock;
+                }
+
+                if (input == UserInputEvent.RotateRight && boardState == countdown)
+                    countdown.Increase();
+                else if (input == UserInputEvent.RotateLeft && boardState == countdown)
+                    countdown.Decrease();
+            }
+        }
+
 
         private static void TestMap()
         {
@@ -55,6 +86,7 @@ namespace nixi_clock
                     boardRenderer.Render(new Board());
                 }
             }
+            Console.WriteLine("Done");
         }
 
 
@@ -86,6 +118,9 @@ namespace nixi_clock
                     devices[device].SetDutyCycle(channel, 0);
                 }
             }
+
+            Console.WriteLine("Done");
         }
     }
 }
+
